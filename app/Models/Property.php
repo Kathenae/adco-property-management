@@ -5,6 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+enum AvailabilityStatus: string {
+    case OCCUPIED = "occupied";
+    case AVAILABLE = "available";
+    case SOLD = "sold";
+}
+
 class Property extends Model
 {
     use HasFactory;
@@ -16,23 +22,24 @@ class Property extends Model
         'city',
         'state',
         'price',
+        'size_sqft',
         'type',
-        'status',
+        'availability_status',
     ];
 
-    public function features() {
-        return $this->hasMany(PropertyFeature::class);
+    public function amenities() {
+        return $this->belongsToMany(Amenity::class);
     }
 
-    public function creator() {
+    public function user() {
         return $this->belongsTo(User::class);
     }
 
     public function contacts() {
-        return $this->hasMany(ContactInfo::class);
+        return $this->belongsToMany(Contact::class);
     }
 
     public function images() {
-        return $this->hasMany(Image::class);
+        return $this->belongsToMany(Image::class);
     }
 }

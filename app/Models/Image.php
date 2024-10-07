@@ -12,6 +12,7 @@ class Image extends Model
     protected $fillable = [
         'url',
         'primary',
-        'property_id',
+        'disk',
+        'path',
     ];
 }

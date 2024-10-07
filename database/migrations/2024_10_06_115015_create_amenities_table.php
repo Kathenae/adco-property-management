@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Property;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -10,18 +11,16 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('contacts', function (Blueprint $table) {
+        Schema::create('amenities', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('phone');
-            $table->string('email')->nullable();
             $table->timestamps();
         });
 
-        Schema::create('contact_property', function (Blueprint $table) {
+        Schema::create('amenity_property', function (Blueprint $table) {
             $table->foreignId('property_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('contact_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->primary(['property_id', 'contact_id']);
+            $table->foreignId('amenity_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->primary(['property_id', 'amenity_id']);
         });
     }
 
@@ -30,7 +29,7 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('contact_property');
-        Schema::dropIfExists('contact_infos');
+        Schema::dropIfExists('amenity_property');
+        Schema::dropIfExists('amenities');
     }
 };

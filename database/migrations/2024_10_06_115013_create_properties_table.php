@@ -22,7 +22,7 @@ return new class extends Migration
             $table->float('size_sqft');
             $table->decimal('price');
             $table->string('type');
-            $table->enum('status', ['pending', 'active', 'sold']);
+            $table->enum('availability_status', ['occupied', 'available', 'sold']);
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });

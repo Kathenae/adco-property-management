@@ -14,12 +14,17 @@ return new class extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('property_id')->constrained();
             $table->string('url');
             $table->string('path');
-            $table->string('disk');
-            $table->boolean('primary');
+            $table->string('disk')->default('local');
+            $table->boolean('primary')->default(false);
             $table->timestamps();
+        });
+
+        Schema::create('image_property', function (Blueprint $table) {
+            $table->foreignId('property_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('image_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->primary(['property_id', 'image_id']);
         });
     }
 
@@ -28,6 +33,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('image_property');
         Schema::dropIfExists('images');
     }
 };
