@@ -10,7 +10,7 @@ export default function Page({ }: PageProps) {
             <DynamicForm
                 header={(title = "Sign in") => <h1 className="text-xl text-start font-bold mb-4">{title}</h1>}
                 method="post" submitUrl={route('login')}
-                className="min-w-96"
+                className="md:min-w-96"
                 inputs={[
                     { type: 'email', name: 'email', value: '' },
                     { type: 'password', name: 'password', value: '' },
