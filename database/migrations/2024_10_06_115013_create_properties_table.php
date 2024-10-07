@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('type');
             $table->enum('availability_status', ['occupied', 'available', 'sold']);
             $table->foreignId('user_id')->constrained();
+            $table->timestamp('published_at')->default(null);
             $table->timestamps();
         });
     }

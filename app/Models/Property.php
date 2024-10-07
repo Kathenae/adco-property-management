@@ -24,7 +24,12 @@ class Property extends Model
         'price',
         'size_sqft',
         'type',
+        'published_at',
         'availability_status',
+    ];
+
+    protected $casts = [
+        'published_at' => 'datetime',
     ];
 
     public function amenities() {
