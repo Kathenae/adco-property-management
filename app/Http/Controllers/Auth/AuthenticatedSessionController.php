@@ -7,9 +7,21 @@ use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
+use Route;
 
 class AuthenticatedSessionController extends Controller
-{
+{   
+
+    /**
+     * Display the login view.
+     */
+    public function create()
+    {
+        return Inertia::render('Login', [
+        ]);
+    }
+
     /**
      * Handle an incoming authentication request.
      */
